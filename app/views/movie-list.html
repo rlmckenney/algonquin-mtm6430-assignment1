@@ -1,0 +1,35 @@
+<div class="movie-list d-flex flex-column">
+  <div class="header">
+    <h3 class="mb-4">Movie titles</h3>
+    <!-- <form class="form">
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search">
+          <span class="input-group-addon fa fa-search"></span>
+        </div>
+      </div>
+    </form> -->
+  </div>
+  <div class="p-3" ng-if="!movieList.length">
+    Sorry, there are no movie titles available. Please try again later.
+  </div>
+  <nav class="list-group">
+    <a ng-repeat="item in movieList"
+       ng-href="/#!/details/{{item.id}}"
+       class="list-group-item list-group-item-action flex-column align-items-start"
+       ng-class="{active: isActive('/details/{{item.id}}')}">
+       <div class="d-flex w-100 justify-content-between">
+         <h5>{{item.title}}</h5>
+         <h5><span class="badge badge-default">{{item.rated}}</span></h5>
+       </div>
+       <div class="d-flex w-100 justify-content-between mb-1">
+         <div>Released in {{item.released}}</div>
+         <div>Runtime {{item.runtime}}</div>
+       </div>
+    </a>
+  </nav>
+  <div class="list-footer">
+    <div>MTM6430-300</div>
+    <div>Robert McKenney</div>
+  </div>
+</div>

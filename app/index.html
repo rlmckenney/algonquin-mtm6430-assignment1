@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Robert McKenney">
+  <meta name="description" content="A simple list/detail example with angular-route and angular-view.">
+  <title> Assignment 1 - Master-Detail View | MTM6430-300</title>
+  <!-- Latest compiled and minified Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <!-- Latest compiled and minified FontAwesome CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Our custom CSS -->
+  <link href="css/app.css" rel="stylesheet">
+  <link href="css/ng-animate.css" rel="stylesheet">
+</head>
+<body ng-app="movieBase">
+  <div class="app" ng-controller="MovieListCtrl">
+    <div class="app-header">
+      <a href="/">MovieBase</a>
+    </div>
+    <div class="row no-gutters" style="flex:1;" >
+      <div class="col-4 col-md-3">
+        <ng-include src="'views/movie-list.html'"></ng-include>
+      </div>
+      <div class="col">
+        <div class="movie-details" ng-controller="MovieDetailsCtrl">
+          <div class="view-animate-container">
+            <div ng-view class="view-animate"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import Angular components -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
+  <!-- Import our app-->
+  <script src="js/app.js"></script>
+</body>
+</html>
