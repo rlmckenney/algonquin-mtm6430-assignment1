@@ -34,22 +34,13 @@ angular.module('movieBase', ['ngRoute', 'ngAnimate'])
     // })()
 
     getById = function(itemId) {
-      return $http.get('/data/movies.json')
+      return $http.get('/data/movies.json') // Could use getAll()
         .then(function(response) {
           return response.data.filter(function(row) {
             return row.id == itemId // Filter out the appropriate one
           })[0]
         })
     }
-
-    // getById = function(itemId) {
-    //   return this.getAll()
-    //     .then(function(data) {
-    //       return data.filter(function(row) {
-    //         return row.id == itemId // Filter out the appropriate one
-    //       })[0] // because filter always returns a new array and we only want the first object
-    //     })
-    // }
 
     return {
       getAll: getAll,
