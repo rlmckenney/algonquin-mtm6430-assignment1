@@ -1,20 +1,20 @@
 <div class="movie-list d-flex flex-column">
   <div class="header">
     <h3 class="mb-4">Movie titles</h3>
-    <!-- <form class="form">
+    <form class="form">
       <div class="form-group">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" placeholder="Search" ng-model="$ctrl.searchQuery">
           <span class="input-group-addon fa fa-search"></span>
         </div>
       </div>
-    </form> -->
+    </form>
   </div>
   <div class="p-3" ng-if="! $ctrl.movieList.length">
     Sorry, there are no movie titles available. Please try again later.
   </div>
   <nav class="list-group">
-    <a ng-repeat="item in $ctrl.movieList"
+    <a ng-repeat="item in $ctrl.movieList | filter:$ctrl.searchQuery"
        ng-href="/#!/details/{{item.id}}"
        class="list-group-item list-group-item-action flex-column align-items-start"
        ng-class="{active: isActive('/details/{{item.id}}')}">
