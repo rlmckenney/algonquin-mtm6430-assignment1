@@ -15,82 +15,49 @@ angular.module('movieBase', ['ngRoute', 'ngAnimate'])
     // $locationProvider.html5Mode(true)
 
   })
-  .service('movieDb', function ($http) {
-
-    getAll = function() {
-      return $http.get('/data/movies.json')
-        .then(function(response) {
-          return response.data
+  
+  .controller('MovieListCtrl', function ($scope, $location, $http) {
+    $http
+      .get('/data/movies.json')
+      .then(function(response) {
+        var data = response.data
+        $scope.maxId = Math.max.apply(
+          Math,
+          data.map(function(movie) {
+            return movie.id;
+          })
+        )
+        $scope.movieList = data.map(function(movie) {
+          return {
+            "id": movie.id,
+            "title": movie.title,
+            "released": movie._year_data,
+            "rated": movie.rated,
+            "runtime": movie.runtime,
+          }
         })
-    }
-
-    // getAll = () => ( $http.get('/data/movies.json').then((response) => (response.data)) )
-
-    // getAll = (function(response) {
-    //   return $http.get('/data/movies.json')
-    //     .then(function(response) {
-    //       return response.data
-    //     })
-    // })()
-
-    getById = function(itemId) {
-      return $http.get('/data/movies.json')
-        .then(function(response) {
-          return response.data.filter(function(row) {
-            return row.id == itemId // Filter out the appropriate one
-          })[0]
-        })
-    }
-
-    // getById = function(itemId) {
-    //   return this.getAll()
-    //     .then(function(data) {
-    //       return data.filter(function(row) {
-    //         return row.id == itemId // Filter out the appropriate one
-    //       })[0] // because filter always returns a new array and we only want the first object
-    //     })
-    // }
-
-    return {
-      getAll: getAll,
-      getById: getById
-    }
-  })
-
-  .controller('MovieListCtrl', function ($scope, $location, movieDb) {
-
-    movieDb.getAll().then(function(data) {
-      $scope.maxId = Math.max.apply(
-        Math,
-        data.map(function(movie) {
-          return movie.id;
-        })
-      )
-      $scope.movieList = data.map(function(movie) {
-        return {
-          "id": movie.id,
-          "title": movie.title,
-          "released": movie._year_data,
-          "rated": movie.rated,
-          "runtime": movie.runtime,
-        }
       })
-    }).catch(function() {
-      // set default values in the model ($scope)
-      $scope.movieList = []
-      $scope.maxId = null
-    })
+      .catch(function() {
+        // set default values in the model ($scope)
+        $scope.movieList = []
+        $scope.maxId = null
+      })
 
     $scope.isActive = (viewLocation) => (viewLocation === $location.path())
   })
 
-  .controller('MovieDetailsCtrl', function ($scope, $routeParams, movieDb, $location) {
+  .controller('MovieDetailsCtrl', function ($scope, $routeParams, $http, $location) {
 
     $scope.itemId = $routeParams.itemId
 
-    movieDb.getById($scope.itemId)
-      .then(function(data) { $scope.movie = data })
-      .catch(function() {
+    $http.get('/data/movies.json')
+      .then(function(response) {
+        $scope.movie = response.data.filter(function(row) {
+          return row.id == $scope.itemId // Filter out the appropriate one
+        })[0]
+      })
+      .catch(function(e) {
+        console.error("Problem retrieving movie data", e)
         // redirect to placeholder
         $location.path('/')
       })
