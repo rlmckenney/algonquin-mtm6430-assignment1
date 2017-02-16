@@ -12,20 +12,19 @@
   <!-- Latest compiled and minified FontAwesome CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Our custom CSS -->
-  <link href="css/app.css" rel="stylesheet">
-  <link href="css/ng-animate.css" rel="stylesheet">
+  <link href="app.css" rel="stylesheet">
 </head>
 <body ng-app="movieBase">
-  <div class="app" ng-controller="MovieListCtrl">
+  <div class="app">
     <div class="app-header">
       <a href="/">MovieBase</a>
     </div>
     <div class="row no-gutters" style="flex:1;" >
       <div class="col-4 col-md-3">
-        <ng-include src="'views/movie-list.html'"></ng-include>
+        <movie-list></movie-list>
       </div>
       <div class="col">
-        <div class="movie-details" ng-controller="MovieDetailsCtrl">
+        <div class="movie-details">
           <div class="view-animate-container">
             <div ng-view class="view-animate"></div>
           </div>
@@ -39,6 +38,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
   <!-- Import our app-->
-  <script src="js/app.js"></script>
+  <script src="app.module.js"></script>
+  <script src="app.config.js"></script>
+  <script src="core/core.module.js"></script>
+  <script src="core/movie-db/movie-db.module.js"></script>
+  <script src="core/movie-db/movie-db.service.js"></script>
+  <script src="movie-list/movie-list.module.js"></script>
+  <script src="movie-list/movie-list.component.js"></script>
+  <script src="movie-details/movie-details.module.js"></script>
+  <script src="movie-details/movie-details.component.js"></script>
+  <script src="placeholder/placeholder.module.js"></script>
+  <script src="placeholder/placeholder.component.js"></script>
 </body>
 </html>

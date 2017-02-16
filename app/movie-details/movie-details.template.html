@@ -1,0 +1,34 @@
+<div class="card movie">
+  <img class="card-img-left" ng-src="{{$ctrl.movie.poster}}" alt="Poster">
+  <div class="card-block d-flex flex-column" style="min-height:100%;">
+    <div class="d-flex justify-content-between">
+      <h4 class="card-title">{{$ctrl.movie.title}}</h4>
+      <h4 class="card-title"><span class="badge badge-default">{{$ctrl.movie.rated}}</span></h4>
+    </div>
+    <h6 class="card-subtitle mb-3 text-muted">{{$ctrl.movie.genres}}</h6>
+    <p class="card-text">{{$ctrl.movie.plot}}</p>
+    <div class="card-text" style="flex:1;">
+      <strong>Director:</strong> {{$ctrl.movie.director}}<br>
+      <strong>Writer:</strong> {{$ctrl.movie.director}}<br>
+      <strong>Stars:</strong> {{$ctrl.movie.actors}}
+    </div>
+    <div class="d-flex justify-content-start mt-4 ">
+      <p>Released on {{$ctrl.movie.released | date: format: mediumDate}}</p>
+      <p class="ml-4">Runtime {{$ctrl.movie.runtime}}</p>
+    </div>
+    <div class="row" style="margin-top: 3rem;">
+      <div class="col">
+        <a
+          ng-href="/#!/details/{{$ctrl.movie.id - 1}}"
+          class="btn btn-outline-primary btn-block"
+          ng-hide="$ctrl.movie.id == 1">Previous</a>
+      </div>
+      <div class="col">
+        <a
+          ng-href="/#!/details/{{$ctrl.movie.id + 1}}"
+          class="btn btn-outline-primary btn-block"
+          ng-hide="$ctrl.movie.id == $ctrl.maxId">Next</a>
+      </div>
+    </div>
+  </div>
+</div>
