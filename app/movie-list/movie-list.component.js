@@ -4,7 +4,9 @@ angular
     templateUrl: 'movie-list/movie-list.template.html',
     controller: ['$location', 'movieDb',
       function MovieListCtrl($location, movieDb) {
+
         var self = this;
+
         movieDb.getAll().then(function(data) {
           self.movieList = data.map(function(movie) {
             return {
@@ -21,6 +23,7 @@ angular
           self.movieList = []
           self.maxId = null
         })
+
         self.isActive = (viewLocation) => (viewLocation === $location.path())
       }
     ]
