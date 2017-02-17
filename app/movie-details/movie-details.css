@@ -1,0 +1,29 @@
+.card.movie {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  width: 56rem;
+  border-bottom: rgba(0,0,0,0.12);
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.25);
+}
+.card.movie .card-img-left {
+  width: 18rem;
+  height: inherit;
+  background-color: #000000;
+  flex: 1 0 auto
+}
+.card.movie > .card-img-left > img {
+  width: 100%;
+  height: auto;
+}
+.card.movie .card-img-left,
+.card.movie .card-img-left img {
+  border-top-left-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+}

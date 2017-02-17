@@ -1,5 +1,9 @@
+<link rel="stylesheet" href="movie-details/movie-details.css">
+
 <div class="card movie">
-  <img class="card-img-left" ng-src="{{$ctrl.movie.poster}}" alt="Poster">
+  <div class="card-img-left">
+    <img ng-src="{{$ctrl.movie.poster}}" alt="Poster">
+  </div>
   <div class="card-block d-flex flex-column" style="min-height:100%;">
     <div class="d-flex justify-content-between">
       <h4 class="card-title">{{$ctrl.movie.title}}</h4>
