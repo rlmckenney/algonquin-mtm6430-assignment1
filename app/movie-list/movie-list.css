@@ -1,7 +1,6 @@
 .movie-list {
   background-color: rgba(255,255,255,0.5);
   border-right: 1px solid rgba(0,0,0,0.12);
-  overflow-y: scroll;
   height: 100%;
   min-height: 100%;
 }
@@ -11,9 +10,8 @@
 }
 .movie-list .nav-container {
   flex: 1;
-}
-.movie-list .nav-container nav {
-
+  height: 100%;
+  overflow-y: scroll;
 }
 .list-group-item,
 .list-group-item:visited {
