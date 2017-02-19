@@ -19,12 +19,12 @@ angular
           // We could just pass the whole data array to our movieList property. But, for the sake
           // of example we are showing how to use the javascript array.map() function to transform
           // the dataset. In this case we are just extracting selected properties for each object
-          // in the array. We could also have applied some programatic chage to the values.
+          // in the array. We can also apply some programatic chage to the values e.g. released.
           self.movieList = data.map(function(movie) {
             return {
               "id": movie.id,
               "title": movie.title,
-              "released": movie._year_data,
+              "released": (new Date(movie.released)).getFullYear(),
               "rated": movie.rated,
               "runtime": movie.runtime,
               "genres": movie.genres
