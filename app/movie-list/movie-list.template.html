@@ -20,7 +20,7 @@
            load these values from a backend API call and make them available in another
            model property.
       -->
-      <div class="form-group" ng-init="genres = ['Action', 'Adventure', 'Fantasy', 'Sci-Fi']">
+      <div class="form-group" ng-init="genres = ['Action', 'Adventure', 'Fantasy', 'Sci-Fi', 'Comedy']">
         <!-- We are using th ngOptions directive to dynamically create our select options.
              The "g for g in genres" syntax iterates over the genres array and extracts each
              value one by one into the temporary variable "g". We are then assgining the contents
@@ -54,7 +54,10 @@
       <!-- We are calling the function isActive in ngClass and passing the URI for the current
            line item. This lets us encapsulate the logic in our controller and simplify our markup.
       -->
-      <a ng-repeat="item in $ctrl.movieList | filter:$ctrl.searchQuery"
+      <!-- If the value for genre is '' then we need to explicitly set the filter value to
+           be undefined or it will try to filter on matching an empty string, which will
+           not match any records and therefore show us nothing in the list. -->
+      <a ng-repeat="item in $ctrl.movieList | filter:(genre || undefined) | filter:$ctrl.searchQuery"
          ng-href="/#!/details/{{item.id}}"
          class="list-group-item list-group-item-action flex-column align-items-start"
          ng-class="{active: $ctrl.isActive('/details/{{item.id}}')}">

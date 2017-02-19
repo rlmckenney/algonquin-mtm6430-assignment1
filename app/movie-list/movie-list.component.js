@@ -27,6 +27,7 @@ angular
               "released": movie._year_data,
               "rated": movie.rated,
               "runtime": movie.runtime,
+              "genres": movie.genres
             }
           })
         })
