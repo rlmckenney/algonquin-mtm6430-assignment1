@@ -1,3 +1,2 @@
-angular.module('movieList', [
-  'core.movieDb'
-])
+angular
+  .module('movieList', [ 'core.movieDb' ])

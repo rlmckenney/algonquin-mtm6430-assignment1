@@ -4,10 +4,13 @@ angular
   .module('movieList')
   .component('movieList', {
     templateUrl: 'movie-list/movie-list.template.html',
-    controller: ['$location', 'movieDb',
-      function MovieListCtrl($location, movieDb) {
+    controller: ['$location', 'movieDb', 'metaData',
+      function MovieListCtrl($location, movieDb, metaData) {
+        // We copy the injected metaData constant to a local variable to make it accessible within
+        // the component's isolated scope in the template.html file.
+        this.metaData = metaData
 
-        var self = this; // we are making a referential copy of this (the controller) so that
+        var self = this; // We are making a referential copy of this (the controller) so that
                          // we can reference it correctly inside our functions. If we just used
                          // "this" inside our functions it would refer to the function
                          // and not our controller.

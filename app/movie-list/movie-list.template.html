@@ -52,7 +52,7 @@
            we are dynamically creating a portion of the URI with the express {{item.id}}
       -->
       <!-- We are calling the function isActive in ngClass and passing the URI for the current
-           line item. This lets us encapsulate the logic in our controller and simplify our markup. 
+           line item. This lets us encapsulate the logic in our controller and simplify our markup.
       -->
       <a ng-repeat="item in $ctrl.movieList | filter:$ctrl.searchQuery"
          ng-href="/#!/details/{{item.id}}"
@@ -70,7 +70,7 @@
     </nav>
   </div>
   <div class="list-footer">
-    <div>MTM6430-300</div>
-    <div>Robert McKenney</div>
+    <div>{{$ctrl.metaData.courseNumber}}-{{$ctrl.metaData.courseSection}}</div>
+    <div>{{$ctrl.metaData.author}}</div>
   </div>
 </div>
