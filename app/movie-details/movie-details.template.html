@@ -1,0 +1,52 @@
+<!-- Load the css stylesheet for this component -->
+<link rel="stylesheet" href="movie-details/movie-details.css">
+<!-- Content markup for this component -->
+<!-- Remember in a component we are using an isolated scope for our model properties
+     so, we have to prefix scope variable referrences with $crl. -->
+<div class="card movie">
+  <div class="card-img-left">
+    <!-- Notice that we are using ngSrc instead of src in the <img> tag. This is because
+         we are dynamically creating a portion of the URI. This prevents the browser from trying
+         to load the image before the javascript has completed formed the URI.
+    -->
+    <img ng-src="{{$ctrl.movie.poster}}" alt="Poster">
+  </div>
+  <div class="card-block d-flex flex-column" style="min-height:100%;">
+    <div class="d-flex justify-content-between">
+      <h4 class="card-title">{{$ctrl.movie.title}}</h4>
+      <h4 class="card-title"><span class="badge badge-default">{{$ctrl.movie.rated}}</span></h4>
+    </div>
+    <h6 class="card-subtitle mb-3 text-muted">{{$ctrl.movie.genres}}</h6>
+    <p class="card-text">{{$ctrl.movie.plot}}</p>
+    <div class="card-text" style="flex:1;">
+      <strong>Director:</strong> {{$ctrl.movie.director}}<br>
+      <strong>Writer:</strong> {{$ctrl.movie.director}}<br>
+      <strong>Stars:</strong> {{$ctrl.movie.actors}}
+    </div>
+    <div class="d-flex justify-content-start mt-4 ">
+      <!-- Here we are using a built-in angular date formatting filter -->
+      <p>Released on {{$ctrl.movie.released | date: format: mediumDate}}</p>
+      <p class="ml-4">Runtime {{$ctrl.movie.runtime}}</p>
+    </div>
+    <div class="row" style="margin-top: 3rem;">
+      <div class="col">
+        <!-- Notice that we are using ngHref instead of href in the <a></a> tag. This is because
+             we are dynamically creating a portion of the URI with the express {{item.id}}
+        -->
+        <!-- This solution for managing the previous and next buttons only works because our
+             dataset has sequential id values. A more robust solution would be required for
+             a production application. -->
+        <a
+          ng-href="/#!/details/{{$ctrl.movie.id - 1}}"
+          class="btn btn-outline-primary btn-block"
+          ng-hide="$ctrl.movie.id == 1">Previous</a>
+      </div>
+      <div class="col">
+        <a
+          ng-href="/#!/details/{{$ctrl.movie.id + 1}}"
+          class="btn btn-outline-primary btn-block"
+          ng-hide="$ctrl.movie.id == $ctrl.maxId">Next</a>
+      </div>
+    </div>
+  </div>
+</div>

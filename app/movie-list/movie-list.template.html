@@ -1,0 +1,79 @@
+<!-- Load the css stylesheet for this component -->
+<link rel="stylesheet" href="movie-list/movie-list.css">
+<!-- Content markup for this component -->
+<!-- Remember in a component we are using an isolated scope for our model properties
+     so, we have to prefix scope variable referrences with $crl. -->
+<div class="movie-list d-flex flex-column">
+  <div class="header">
+    <h3 class="mb-4">Movie titles</h3>
+    <form class="form">
+      <div class="form-group">
+        <div class="input-group">
+          <!-- Here we will link the search input to a model prop called searchQuery
+               We then use that with the filter option in the ngRepeat directive below -->
+          <input type="text" class="form-control" placeholder="Search" ng-model="$ctrl.searchQuery">
+          <span class="input-group-addon fa fa-search"></span>
+        </div>
+      </div>
+      <!-- We are using the ngInit directive to populate an array of values we can use as the
+           options for the select control. This is fine for prototyping, but we would normally
+           load these values from a backend API call and make them available in another
+           model property.
+      -->
+      <div class="form-group" ng-init="genres = ['Action', 'Adventure', 'Fantasy', 'Sci-Fi', 'Comedy']">
+        <!-- We are using th ngOptions directive to dynamically create our select options.
+             The "g for g in genres" syntax iterates over the genres array and extracts each
+             value one by one into the temporary variable "g". We are then assgining the contents
+             of that variable to be both the "value" and the "lable" for the option.
+             There are many other powerful options for this directive. See the official docs at
+             https://docs.angularjs.org/api/ng/directive/ngOptions
+        -->
+        <select class="form-control" ng-model="genre" ng-options="g for g in genres">
+          <!-- This single hard coded option lets us set a placeholder for when no option
+               is selected. We are employing a ternary operator in this expression to achieve
+               the equivialant of an if/then statement. This lets us change the lable for this
+               option based on whether or not genre hold a selected value. -->
+          <option value="">-- {{genre? 'show all' : 'filter by genre'}} --</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <!-- A fallback message to display in case we cannot access our data source. -->
+  <div class="p-3" ng-if="! $ctrl.movieList.length">
+    Sorry, there are no movie titles available. Please try again later.
+  </div>
+  <div class="nav-container">
+    <nav class="list-group">
+      <!-- ngRepeat lets us easily iterate over movieList and generate a clickable
+           list item for earch element of our movieList array.  We then applying the
+           option to only create list items for those elements that match the search input value.
+      -->
+      <!-- Notice that we are using ngHref instead of href in the <a></a> tag. This is because
+           we are dynamically creating a portion of the URI with the express {{item.id}}
+      -->
+      <!-- We are calling the function isActive in ngClass and passing the URI for the current
+           line item. This lets us encapsulate the logic in our controller and simplify our markup.
+      -->
+      <!-- If the value for genre is '' then we need to explicitly set the filter value to
+           be undefined or it will try to filter on matching an empty string, which will
+           not match any records and therefore show us nothing in the list. -->
+      <a ng-repeat="item in $ctrl.movieList | filter:(genre || undefined) | filter:$ctrl.searchQuery"
+         ng-href="/#!/details/{{item.id}}"
+         class="list-group-item list-group-item-action flex-column align-items-start"
+         ng-class="{active: $ctrl.isActive('/details/{{item.id}}')}">
+         <div class="d-flex w-100 justify-content-between">
+           <h6>{{item.title}}</h6>
+           <h6 class="ml-2"><span class="badge badge-default">{{item.rated}}</span></h6>
+         </div>
+         <div class="d-flex w-100 justify-content-between mb-1">
+           <div>Released in {{item.released}}</div>
+           <div>Runtime {{item.runtime}}</div>
+         </div>
+      </a>
+    </nav>
+  </div>
+  <div class="list-footer">
+    <div>{{$ctrl.metaData.courseNumber}}-{{$ctrl.metaData.courseSection}}</div>
+    <div>{{$ctrl.metaData.author}}</div>
+  </div>
+</div>

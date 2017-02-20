@@ -1,0 +1,149 @@
+/**************************************************************
+ *  This is the css for the main layout template (index.html)
+ *  This css for individual components are stored and imported
+ *  with those components.
+ **************************************************************/
+html { height: 100%; }
+body {
+  background-color: rgba(0,0,0,0.05);
+  color: rgba(0,0,0,0.87);
+  height: 100%;
+  min-height: 100%;
+}
+.app {
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
+  height: 100%;
+  min-height: 100%;
+}
+.app-header {
+  height: 4rem;
+  background-color: #0277BD;
+  background-color: #1E88E5;
+  color: rgba(255,255,255,.6);
+  text-align: center;
+  font-size: 2rem;
+  line-height: 4rem;
+  border-bottom: rgba(0,0,0,0.12);
+  -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.25);
+}
+.app-header a { text-decoration: none; color: rgba(255,255,255,.6); }
+.movie-details {
+  padding: 3rem 3rem;
+}
+
+/***************************************************
+ *                  Animation
+ ***************************************************/
+ @-webkit-keyframes fadeInDown {
+   from {
+     opacity: 0;
+     -webkit-transform: translate3d(0, -100%, 0);
+     transform: translate3d(0, -100%, 0);
+   }
+
+   to {
+     opacity: 1;
+     -webkit-transform: none;
+     transform: none;
+   }
+ }
+
+ @keyframes fadeInDown {
+   from {
+     opacity: 0;
+     -webkit-transform: translate3d(0, -100%, 0);
+     transform: translate3d(0, -100%, 0);
+   }
+
+   to {
+     opacity: 1;
+     -webkit-transform: none;
+     transform: none;
+   }
+ }
+
+ @-webkit-keyframes fadeOutDown {
+   from {
+     opacity: 1;
+   }
+
+   to {
+     opacity: 0;
+     -webkit-transform: translate3d(0, 100%, 0);
+     transform: translate3d(0, 100%, 0);
+   }
+ }
+
+ @keyframes fadeOutDown {
+   from {
+     opacity: 1;
+   }
+
+   to {
+     opacity: 0;
+     -webkit-transform: translate3d(0, 100%, 0);
+     transform: translate3d(0, 100%, 0);
+   }
+ }
+
+ @-webkit-keyframes fadeOutUp {
+   from {
+     opacity: 1;
+   }
+
+   to {
+     opacity: 0;
+     -webkit-transform: translate3d(0, -100%, 0);
+     transform: translate3d(0, -100%, 0);
+   }
+ }
+
+ @keyframes fadeOutUp {
+   from {
+     opacity: 1;
+   }
+
+   to {
+     opacity: 0;
+     -webkit-transform: translate3d(0, -100%, 0);
+     transform: translate3d(0, -100%, 0);
+   }
+ }
+
+ .view-animate-container {
+   height: 500px!important;
+   position: relative;
+   height: auto;
+   overflow: hidden;
+   background-color: transparent;
+ }
+ .view-animate {
+   -webkit-animation-duration: 0.7s;
+   animation-duration: 0.7s;
+   -webkit-animation-fill-mode: both;
+   animation-fill-mode: both;
+ }
+ .view-animate.ng-enter,
+ .view-animate.ng-leave {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+ }
+ .view-animate.ng-enter {
+   -webkit-animation-name: fadeInDown;
+   animation-name: fadeInDown;
+ }
+ .view-animate.ng-leave {
+   -webkit-animation-name: fadeOutUp;
+   animation-name: fadeOutUp;
+ }
+ .view-animate.ng-enter.active {
+   -webkit-animation-name: fadeInDown;
+   animation-name: fadeInDown;
+ }
