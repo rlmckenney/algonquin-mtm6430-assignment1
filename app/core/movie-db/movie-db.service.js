@@ -4,7 +4,7 @@ angular
   .module('core.movieDb')
   .service('movieDb', function ($http) {
 
-    getAll = () => ( $http.get('/data/movies.json').then((response) => (response.data)) )
+    getAll = () => ( $http.get('/mtm6430/master-detail/app/data/movies.json').then((response) => (response.data)) )
 
     getById = itemId => (
       getAll().then( (data) => (data.filter( (row) => (row.id == itemId))[0]) )

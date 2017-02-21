@@ -37,13 +37,13 @@
              dataset has sequential id values. A more robust solution would be required for
              a production application. -->
         <a
-          ng-href="/#!/details/{{$ctrl.movie.id - 1}}"
+          ng-href="/mtm6430/master-detail/app/#!/details/{{$ctrl.movie.id - 1}}"
           class="btn btn-outline-primary btn-block"
           ng-hide="$ctrl.movie.id == 1">Previous</a>
       </div>
       <div class="col">
         <a
-          ng-href="/#!/details/{{$ctrl.movie.id + 1}}"
+          ng-href="/mtm6430/master-detail/app/#!/details/{{$ctrl.movie.id + 1}}"
           class="btn btn-outline-primary btn-block"
           ng-hide="$ctrl.movie.id == $ctrl.maxId">Next</a>
       </div>

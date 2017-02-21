@@ -58,7 +58,7 @@
            be undefined or it will try to filter on matching an empty string, which will
            not match any records and therefore show us nothing in the list. -->
       <a ng-repeat="item in $ctrl.movieList | filter:(genre || undefined) | filter:$ctrl.searchQuery"
-         ng-href="/#!/details/{{item.id}}"
+         ng-href="/mtm6430/master-detail/app/#!/details/{{item.id}}"
          class="list-group-item list-group-item-action flex-column align-items-start"
          ng-class="{active: $ctrl.isActive('/details/{{item.id}}')}">
          <div class="d-flex w-100 justify-content-between">
