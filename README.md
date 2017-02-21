@@ -9,4 +9,6 @@ The [movie-db-service](https://github.com/rlmckenney/algonquin-mtm6430-assignmen
 
 The [custom-components](https://github.com/rlmckenney/algonquin-mtm6430-assignment1/tree/custom-components) branch shows the final version (which has been merged into the main `dev` and `master` branches) where we implemented custom components and more closely follow the best practices for code organization in a larger project. This becomes a good reference template.
 
-You will find that this final version is heavily documented throughout the code to explain what each function and angular directive is doing.
+You will find that this final version is heavily documented throughout the code to explain what each function and angular directive is doing. Notice that the movieDb service has been moved under the `core` module.
+
+For further reading on creating custom components, see the [angular documentation](https://docs.angularjs.org/guide/component) and also this [step-by-step tutorial](https://docs.angularjs.org/tutorial).
