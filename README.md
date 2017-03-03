@@ -12,3 +12,10 @@ The [custom-components](https://github.com/rlmckenney/algonquin-mtm6430-assignme
 You will find that this final version is heavily documented throughout the code to explain what each function and angular directive is doing. Notice that the movieDb service has been moved under the `core` module.
 
 For further reading on creating custom components, see the [angular documentation](https://docs.angularjs.org/guide/component) and also this [step-by-step tutorial](https://docs.angularjs.org/tutorial).
+
+## Update ##
+We have updated the app to include a feature to let users toggle any given movie as a favourite or not. This was a good use case to demonstrate creating a service to manage and sync a list with localStorage.
+
+Have a look at the `localstorage` branch on this github repo. There is a new core service called *Favourites*. This shows a sample implementation of how to manage an array of items and then sync it to the browser's localStorage, ensuring data persistence between browser sessions.
+
+There are also a couple of new functions in the `movie-details-component` to support the user interactions - clicking on the heart icon to favourite or unfavourite the current movie being displayed.
