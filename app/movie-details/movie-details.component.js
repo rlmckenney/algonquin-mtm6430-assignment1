@@ -4,8 +4,8 @@ angular
   .module('movieDetails')
   .component('movieDetails', {
     templateUrl: 'movie-details/movie-details.template.html',
-    controller: ['$routeParams', '$location', 'movieDb',
-      function MovieListCtrl($routeParams, $location, movieDb) {
+    controller: ['$routeParams', '$location', 'movieDb', 'favourites',
+      function MovieListCtrl($routeParams, $location, movieDb, favourites) {
         var self = this  // we are making a referential copy of this (the controller) so that
                          // we can reference it correctly inside our functions. If we just used
                          // "this" inside our functions it would refer to the function
@@ -26,6 +26,19 @@ angular
           })
         // the movieDb.getMaxId() function returns the highest id value of all our movie objects
         movieDb.getMaxId().then( id => { self.maxId = id } )
+
+        // We will add a couple of functions to manage the favourite status
+        // of each movie. These will use our 'favourites' service.
+        self.isFavourite = movieId => (favourites.hasMovie(movieId))
+
+        self.toggleFavourite = movieId => {
+          if (self.isFavourite(movieId)) {
+            favourites.removeMovie(movieId)
+          }
+          else {
+            favourites.addMovie(movieId)
+          }
+        }
       }
     ]}
   )
